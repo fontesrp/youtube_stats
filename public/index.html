@@ -16,6 +16,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
+    <!-- Chart.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js" integrity="sha256-CfcERD4Ov4+lKbWbYqXD6aFM9M51gN4GUEtDhkWABMo=" crossorigin="anonymous"></script>
+
     <!-- Application -->
     <link rel="stylesheet" type="text/css" href="/youtube_stats/public/stylesheets/index.css">
     <script type="text/javascript" src="/youtube_stats/public/javascripts/util.js"></script>
@@ -23,6 +26,7 @@
     <script type="text/javascript" src="/youtube_stats/public/javascripts/liveChats.js"></script>
     <script type="text/javascript" src="/youtube_stats/public/javascripts/broadcasts.js"></script>
     <script type="text/javascript" src="/youtube_stats/public/javascripts/userMessages.js"></script>
+    <script type="text/javascript" src="/youtube_stats/public/javascripts/report.js"></script>
     <script type="text/javascript" src="/youtube_stats/public/javascripts/index.js"></script>
 
 </head>
@@ -231,6 +235,32 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     <button type="button" class="btn btn-outline-primary" id="user-messages-json">Get as JSON</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hype report -->
+    <div class="modal fade" id="chat-stats-modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Chat stats</h5>
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div>
+                        <p>Hype: <span id="chat-hype"></span> messages per second</p>
+                    </div>
+                    <div>
+                        <canvas id="hype-chart" width="400" height="400"></canvas>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-outline-primary" id="chat-stats-json">Get as JSON</button>
                 </div>
             </div>
         </div>

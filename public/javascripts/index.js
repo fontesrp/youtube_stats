@@ -8,6 +8,7 @@
         setupBroadcasts();
 
         setupUserMessages();
+        setupReport();
     };
 
     document.addEventListener("DOMContentLoaded", onload);
