@@ -64,6 +64,14 @@ class Routes extends Router {
             }
 
             break;
+
+        case "check":
+
+            if ($this->method === "GET") {
+                return $session_controller->check();
+            }
+
+            break;
         }
 
         return ["error" => "invalid request"];

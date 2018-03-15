@@ -76,3 +76,19 @@ function create_new_user(Database $db, GoogleProject $google, $user_info, $user 
         "is_admin" => is_admin()
     ]);
 }
+
+function user_signed_in(): bool {
+
+    if (empty($_SESSION)) {
+        session_start();
+    }
+
+    if (!isset($_SESSION["token"])) {
+        return false;
+    }
+
+    $google = new GoogleProject();
+    $google->setAccessToken($_SESSION["token"]);
+
+    return $google->isTokenValid();
+}

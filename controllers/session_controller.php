@@ -83,6 +83,19 @@ class SessionController {
         }
     }
 
+    function check(): array {
+
+        if (!isset($_SESSION["token"])) {
+            return ["signed_in" => false];
+        }
+
+        $google = new GoogleProject();
+
+        $google->setAccessToken($_SESSION["token"]);
+
+        return ["signed_in" => $google->isTokenValid()];
+    }
+
     private function set(User $user, GoogleProject $google): void {
         $_SESSION["user_id"] = $user->getId();
         $_SESSION["token"] = $google->getAccessToken();
