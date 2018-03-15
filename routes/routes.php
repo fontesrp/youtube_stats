@@ -17,6 +17,7 @@ require_once __DIR__ . "/router.php";
 require_once __DIR__ . "/../controllers/session_controller.php";
 require_once __DIR__ . "/../controllers/broadcasts_controller.php";
 require_once __DIR__ . "/../controllers/users_controller.php";
+require_once __DIR__ . "/../controllers/messages_controller.php";
 
 class Routes extends Router {
 
@@ -35,11 +36,8 @@ class Routes extends Router {
         ];
     }
 
-    protected function root(): array {
-        return [
-            "path" => "/",
-            "response" => "It works!"
-        ];
+    protected function root() {
+        require_once __DIR__ . "/../home.php";
     }
 
     protected function session() {
@@ -146,6 +144,17 @@ class Routes extends Router {
             }
 
             break;
+        }
+
+        return ["error" => "invalid request"];
+    }
+
+    protected function messages() {
+
+        $messages_controller = new MessagesController();
+
+        if ($this->verb === "report" && $this->method === "GET") {
+            return $messages_controller->report($this->reqParams);
         }
 
         return ["error" => "invalid request"];
