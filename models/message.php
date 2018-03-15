@@ -124,4 +124,83 @@ class Message {
 
         return $this->id;
     }
+
+    function allByUser(int $id): array {
+
+        $this->db->clear();
+
+        $this->db->setSql("SELECT
+                id,
+                body,
+                user_id,
+                chat_id,
+                created_at,
+                updated_at
+            FROM
+                messages
+            WHERE
+                user_id = ?
+            ORDER BY
+                created_at DESC");
+
+        $this->db->setParams([
+            ["type" => "i", "value" => $id]
+        ]);
+
+        $this->db->query();
+
+        return $this->db->getAll();
+    }
+
+    function currentHype(string $chat_id): float {
+
+        $this->db->clear();
+
+        $this->db->setSql("SELECT
+                COUNT(1) / 3600 AS hype
+            FROM
+                messages
+            WHERE
+                created_at BETWEEN SUBDATE(NOW(), INTERVAL 1 HOUR) AND NOW()
+                AND chat_id = ?");
+
+        $this->db->setParams([
+            ["value" => $chat_id]
+        ]);
+
+        $this->db->query();
+
+        $hype = 0.0;
+
+        if ($row = $this->db->getRow()) {
+            $hype = (float) $row["hype"];
+        }
+
+        return $hype;
+    }
+
+    function histHype(string $chat_id): array {
+
+        $this->db->clear();
+
+        $this->db->setSql("SELECT
+                CONCAT(SUBSTRING(created_at, 1, 13), ':00:00') AS ref_hour,
+                COUNT(1) / 3600 AS hype
+            FROM
+                messages
+            WHERE
+                chat_id = ?
+            GROUP BY
+                CONCAT(SUBSTRING(created_at, 1, 13), ':00:00')
+            ORDER BY
+                ref_hour");
+
+        $this->db->setParams([
+            ["value" => $chat_id]
+        ]);
+
+        $this->db->query();
+
+        return $this->db->getAll();
+    }
 }
