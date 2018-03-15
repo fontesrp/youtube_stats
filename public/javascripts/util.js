@@ -66,6 +66,15 @@ const removeAllChildren = function (node) {
     }
 };
 
+const removeChildrenMatching = function (query, node) {
+
+    "use strict";
+
+    qsa(query, node).forEach(function (child) {
+        $(child).remove();
+    });
+};
+
 const keepOnlyFirstling = function (node) {
 
     "use strict";

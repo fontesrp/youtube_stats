@@ -19,13 +19,14 @@ const setupLiveChat = async function (props) {
 
         const chat = byId("chat");
 
-        keepOnlyFirstling(chat);
+        removeChildrenMatching(".chat-message", chat);
 
         messages.forEach(function (msg) {
 
             const row = cEl("div");
             row.classList.add("row");
             row.classList.add("mt-2");
+            row.classList.add("chat-message");
 
             const pictureDiv = cEl("div");
             pictureDiv.classList.add("col-1");
@@ -173,6 +174,10 @@ const setupLiveChat = async function (props) {
     if (signedIn) {
         addMessageInput(props);
     }
+
+    chatTimeoutId = setInterval(function () {
+        fetchMessages(props);
+    }, 3000);
 
     return fetchMessages(props);
 };

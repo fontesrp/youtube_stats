@@ -176,6 +176,7 @@ const setupBroadcasts = function () {
             if (props.id === "new") {
                 openNewBcModal();
             } else {
+                clearTimeout(chatTimeoutId);
                 displayBroadcast(props);
             }
         });
