@@ -14,7 +14,9 @@
     <!-- Application -->
     <link rel="stylesheet" type="text/css" href="/youtube_stats/public/stylesheets/index.css">
     <script type="text/javascript" src="/youtube_stats/public/javascripts/util.js"></script>
-    <script type="text/javascript" src="/youtube_stats/public/javascripts/navbar.js"></script>
+    <script type="text/javascript" src="/youtube_stats/public/javascripts/navBar.js"></script>
+    <script type="text/javascript" src="/youtube_stats/public/javascripts/liveChats.js"></script>
+    <script type="text/javascript" src="/youtube_stats/public/javascripts/broadcasts.js"></script>
     <script type="text/javascript" src="/youtube_stats/public/javascripts/index.js"></script>
 
 </head>
@@ -60,6 +62,11 @@
         </div>
     </nav>
 
+    <main>
+        <div id="video"></div>
+        <div class="container" id="chat"></div>
+    </main>
+
     <!-- Modals -->
 
     <!-- Login -->
@@ -91,6 +98,78 @@
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- New Broadcast -->
+    <div class="modal fade" id="new-broadcast-modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">New Broadcast</h5>
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span>&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="new-broadcast-form">
+                        <div class="form-group">
+                            <label for="title">Title</label>
+                            <input type="text" name="title" class="form-control" id="title" placeholder="New Broadcast" required>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-sm-6">
+                                <label for="start_at">Start at</label>
+                                <input type="text" name="start_at" class="form-control" id="start_at" placeholder="mm/dd/yyyy hh:mm:ss AM" required>
+                            </div>
+                            <div class="form-group col-sm-6">
+                                <label for="end_at">End at</label>
+                                <input type="text" name="end_at" class="form-control" id="end_at" placeholder="mm/dd/yyyy hh:mm:ss AM" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="status">Status</label>
+                            <select name="status" class="form-control" id="status">
+                                <option value="private">Private</option>
+                                <option value="unlisted">Unlisted</option>
+                                <option value="public" selected>Public</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="stream">Stream</label>
+                            <select name="stream" class="form-control" id="stream">
+                                <option value="new" data-id="new" selected>Create new stream</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="stream-title">Stream title</label>
+                            <input type="text" name="stream-title" class="form-control" id="stream-title" placeholder="New Stream" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="format">Format</label>
+                            <select name="format" class="form-control" id="format">
+                                <option value="1440p">1440p</option>
+                                <option value="1080p">1080p</option>
+                                <option value="720p">720p</option>
+                                <option value="480p">480p</option>
+                                <option value="360p">360p</option>
+                                <option value="240p" selected>240p</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="ingestion">Protocol</label>
+                            <select name="ingestion" class="form-control" id="ingestion">
+                                <option value="dash">dash</option>
+                                <option value="rtmp" selected>rtmp</option>
+                            </select>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-outline-primary" id="new-broadcast-save">Save</button>
                 </div>
             </div>
         </div>
