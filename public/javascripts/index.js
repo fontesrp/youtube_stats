@@ -6,6 +6,8 @@
 
         setupNavBar();
         setupBroadcasts();
+
+        setupUserMessages();
     };
 
     document.addEventListener("DOMContentLoaded", onload);

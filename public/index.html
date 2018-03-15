@@ -5,9 +5,14 @@
 
     <title>Youtube Stats</title>
 
+    <!-- jQuery -->
+    <link rel="stylesheet" type="text/css" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
+
     <!-- Bootstrap -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script> -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
@@ -17,6 +22,7 @@
     <script type="text/javascript" src="/youtube_stats/public/javascripts/navBar.js"></script>
     <script type="text/javascript" src="/youtube_stats/public/javascripts/liveChats.js"></script>
     <script type="text/javascript" src="/youtube_stats/public/javascripts/broadcasts.js"></script>
+    <script type="text/javascript" src="/youtube_stats/public/javascripts/userMessages.js"></script>
     <script type="text/javascript" src="/youtube_stats/public/javascripts/index.js"></script>
 
 </head>
@@ -170,6 +176,61 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Close</button>
                     <button type="button" class="btn btn-outline-primary" id="new-broadcast-save">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Messages Search -->
+    <div class="modal fade" id="messages-search-modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Search messages</h5>
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="messages-search-form">
+                        <input type="hidden" name="id" id="user-id" required>
+                        <div class="form-group">
+                            <label for="user-name">Name</label>
+                            <input type="text" name="name" id="user-name" placeholder="John Snow" required>
+                            <small class="form-text text-muted">Select user from list</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="user-email">Email</label>
+                            <input type="email" name="email" id="user-email" placeholder="j.snow@winterfell.gov" required>
+                            <small class="form-text text-muted">Select user from list</small>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-outline-primary" id="messages-search-submit">Search</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- User Messages -->
+    <div class="modal fade" id="user-messages-modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">User messages</h5>
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <ul class="list-group" id="user-meassages-list">
+                    </ul>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-outline-primary" id="user-messages-json">Get as JSON</button>
                 </div>
             </div>
         </div>
