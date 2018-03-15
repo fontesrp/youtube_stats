@@ -16,6 +16,7 @@ declare(strict_types=1);
 require_once __DIR__ . "/router.php";
 require_once __DIR__ . "/../controllers/session_controller.php";
 require_once __DIR__ . "/../controllers/broadcasts_controller.php";
+require_once __DIR__ . "/../controllers/users_controller.php";
 
 class Routes extends Router {
 
@@ -117,6 +118,23 @@ class Routes extends Router {
                 return $broadcasts_controller->index();
             case "POST":
                 return $broadcasts_controller->create($this->reqParams);
+            }
+
+            break;
+        }
+
+        return ["error" => "invalid request"];
+    }
+
+    protected function users() {
+
+        $user_controller = new UserController();
+
+        switch ($this->verb) {
+        case "messages":
+
+            if ($this->method === "GET") {
+                return $user_controller->messages($this->reqParams);
             }
 
             break;

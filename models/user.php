@@ -262,4 +262,39 @@ class User {
 
         return $this->db->query();
     }
+
+    function allAdmins(): array {
+
+        $this->db->clear();
+
+        $this->db->setSql("SELECT id, email, oauth_uid
+            FROM users
+            WHERE is_admin = ?");
+
+        $this->db->setParams([
+            ["type" => "i", "value" => 1]
+        ]);
+
+        $this->db->query();
+
+        $results = $this->db->getAll();
+
+        foreach ($results as $idx => $row) {
+            $results[$idx]["oauth_uid"] = json_decode($results[$idx]["oauth_uid"], true);
+        }
+
+        return $results;
+    }
+
+    function fullName(): string {
+        return $this->first_name . " " . $this->last_name;
+    }
+
+    function isAdmin(): bool {
+        return $this->is_admin === 1;
+    }
+
+    function getOauthUid() {
+        return $this->oauth_uid;
+    }
 }
