@@ -15,6 +15,7 @@ declare(strict_types=1);
 
 require_once __DIR__ . "/router.php";
 require_once __DIR__ . "/../controllers/session_controller.php";
+require_once __DIR__ . "/../controllers/broadcasts_controller.php";
 
 class Routes extends Router {
 
@@ -60,6 +61,43 @@ class Routes extends Router {
             if ($this->method === "GET") {
                 $session_controller->destroy($this->reqParams);
                 return;
+            }
+
+            break;
+        }
+
+        return ["error" => "invalid request"];
+    }
+
+    protected function broadcasts() {
+
+        $broadcasts_controller = new BroadcastsController();
+
+        switch ($this->verb) {
+
+        case "streams":
+
+            if ($this->method === "GET") {
+                return $broadcasts_controller->streams();
+            }
+
+            break;
+
+        case "show":
+
+            if ($this->method === "GET") {
+                return $broadcasts_controller->show($this->reqParams);
+            }
+
+            break;
+
+        default:
+
+            switch ($this->method) {
+            case "GET":
+                return $broadcasts_controller->index();
+            case "POST":
+                return $broadcasts_controller->create($this->reqParams);
             }
 
             break;
