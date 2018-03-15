@@ -1,0 +1,16 @@
+USE youtube_stats;
+
+CREATE TABLE users (
+    id SERIAL PRIMARY KEY,
+    oauth_provider VARCHAR(255) NOT NULL,
+    oauth_uid JSON NOT NULL,
+    first_name VARCHAR(100) NOT NULL,
+    last_name VARCHAR(100) NOT NULL,
+    email VARCHAR(255) NOT NULL,
+    gender VARCHAR(10) NOT NULL,
+    locale VARCHAR(10) NOT NULL,
+    picture VARCHAR(255) NOT NULL,
+    link VARCHAR(255) NOT NULL,
+    created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at DATETIME NOT NULL ON UPDATE CURRENT_TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
