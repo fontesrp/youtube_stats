@@ -2,6 +2,13 @@ const setupNavBar = function () {
 
     "use strict";
 
+    const setupSignIn = function () {
+
+        byId("google-signin-btn").addEventListener("click", function () {
+            $("#login-modal").modal("show");
+        });
+    };
+
     return fetch(`${currentUrl()}/session/check`, {
         credentials: "same-origin"
     })
@@ -24,6 +31,7 @@ const setupNavBar = function () {
                 qsa(".signin").forEach(hide);
                 qsa(".admin").forEach(hide);
                 qsa(".signout").forEach(show);
+                setupSignIn();
             }
         });
 };
