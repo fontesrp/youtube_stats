@@ -37,7 +37,7 @@ class Routes extends Router {
     }
 
     protected function root() {
-        require_once __DIR__ . "/../home.php";
+        require_once __DIR__ . "/../public/index.html";
     }
 
     protected function session() {

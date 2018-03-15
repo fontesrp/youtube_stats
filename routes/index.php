@@ -10,7 +10,7 @@
 
 declare(strict_types=1);
 
-require_once __DIR__ . "/routes/routes.php";
+require_once __DIR__ . "/routes.php";
 
 try {
 
