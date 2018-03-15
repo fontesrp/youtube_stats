@@ -14,6 +14,7 @@
 declare(strict_types=1);
 
 require_once __DIR__ . "/router.php";
+require_once __DIR__ . "/../controllers/session_controller.php";
 
 class Routes extends Router {
 
@@ -39,10 +40,31 @@ class Routes extends Router {
         ];
     }
 
-    protected function example(): array {
-        return [
-            "path" => "/example",
-            "response" => "It works!"
-        ];
+    protected function session() {
+
+        $session_controller = new SessionController();
+
+        switch ($this->verb) {
+
+        case "new":
+
+            if ($this->method === "GET") {
+                $session_controller->newSession($this->reqParams);
+                return;
+            }
+
+            break;
+
+        case "delete":
+
+            if ($this->method === "GET") {
+                $session_controller->destroy($this->reqParams);
+                return;
+            }
+
+            break;
+        }
+
+        return ["error" => "invalid request"];
     }
 }
