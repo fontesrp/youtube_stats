@@ -91,6 +91,17 @@ class Routes extends Router {
 
             break;
 
+        case "messages":
+
+            switch ($this->method) {
+            case "GET":
+                return $broadcasts_controller->messages($this->reqParams);
+            case "POST":
+                return $broadcasts_controller->newMessage($this->reqParams);
+            }
+
+            break;
+
         default:
 
             switch ($this->method) {

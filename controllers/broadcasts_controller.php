@@ -7,6 +7,7 @@ require_once __DIR__ . "/../db/database.php";
 require_once __DIR__ . "/../config/google_project.php";
 require_once __DIR__ . "/../models/user.php";
 require_once __DIR__ . "/../models/broadcast.php";
+require_once __DIR__ . "/../models/message.php";
 
 class BroadcastsController {
 
@@ -88,6 +89,48 @@ class BroadcastsController {
             $bc = new Broadcast($this->google);
 
             return $bc->findById($params["request"]["id"]);
+        }
+
+        return [];
+    }
+
+    function messages($params) {
+
+        $user = new User($this->db);
+        $user->findById((int) $params["request"]["owner"]);
+
+        $this->google->setAccessToken($user->getOauthUid());
+
+        if ($this->google->isTokenValid()) {
+
+            $bc = new Broadcast($this->google);
+
+            return $bc->messages($params["request"]["id"]);
+        }
+
+        return [];
+    }
+
+    function newMessage(array $params) {
+
+        session_start();
+
+        $this->google->setAccessToken($_SESSION["token"]);
+
+        if ($this->google->isTokenValid()) {
+
+            $bc = new Broadcast($this->google);
+
+            $res = $bc->newMessage($params["request"]);
+
+            $message = new Message($this->db);
+            $message->create([
+                "body" => $params["request"]["body"],
+                "user_id" => (int) $_SESSION["user_id"],
+                "chat_id" => $params["request"]["chat_id"]
+            ]);
+
+            return $res;
         }
 
         return [];
