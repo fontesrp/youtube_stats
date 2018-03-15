@@ -138,6 +138,14 @@ class Routes extends Router {
             }
 
             break;
+
+        case "all_with_messages":
+
+            if ($this->method === "GET") {
+                return $user_controller->allWithMessages($this->reqParams);
+            }
+
+            break;
         }
 
         return ["error" => "invalid request"];

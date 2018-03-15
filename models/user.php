@@ -297,4 +297,38 @@ class User {
     function getOauthUid() {
         return $this->oauth_uid;
     }
+
+    function allWithMessages(string $field, string $term): array {
+
+        $filter = ($field === "email")
+            ? "usr.email"
+            : "CONCAT(usr.first_name, ' ', usr.last_name)";
+
+        $this->db->clear();
+
+        $this->db->setSql("SELECT DISTINCT
+                usr.id,
+                usr.email,
+                usr.first_name,
+                usr.last_name
+            FROM
+                users usr
+                INNER JOIN messages msg ON usr.id = msg.user_id
+            WHERE
+                LOWER(" . $filter . ") LIKE LOWER(?)");
+
+        $this->db->setParams([
+            ["value" => "%" . $term . "%"]
+        ]);
+
+        $this->db->query();
+
+        $users = $this->db->getAll();
+
+        foreach ($users as $key => $props) {
+            $users[$key]["full_name"] = $props["first_name"] . " " . $props["last_name"];
+        }
+
+        return $users;
+    }
 }

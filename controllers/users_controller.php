@@ -23,6 +23,15 @@ class UserController {
         $this->user = new User($this->db);
     }
 
+    function allWithMessages(array $params) {
+
+        $field = isset($params["request"]["email"])
+            ? "email"
+            : "full_name";
+
+        return $this->user->allWithMessages($field, $params["request"][$field]);
+    }
+
     function messages(array $params) {
 
         $message = new Message($this->db);
