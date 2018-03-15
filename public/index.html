@@ -2,9 +2,63 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
+
     <title>Youtube Stats</title>
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+    <!-- Application -->
+    <link rel="stylesheet" type="text/css" href="/youtube_stats/public/stylesheets/index.css">
+    <script type="text/javascript" src="/youtube_stats/public/javascripts/util.js"></script>
+    <script type="text/javascript" src="/youtube_stats/public/javascripts/navbar.js"></script>
+    <script type="text/javascript" src="/youtube_stats/public/javascripts/index.js"></script>
+
 </head>
 <body>
-    <h1>Home</h1>
+
+    <nav class="navbar navbar-expand navbar-light bg-light">
+        <a class="navbar-brand" href="/youtube_stats">Youtube Stats</a>
+        <div class="collapse navbar-collapse">
+
+            <ul class="navbar-nav">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">
+                        Broadcasts
+                    </a>
+                    <div class="dropdown-menu" id="broadcasts-menu">
+                        <a class="dropdown-item broadcast-link signin hidden" href="#" data-id="new">New Broadcast</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" data-toggle="modal" data-target="#messages-search-modal">
+                        User messages
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" id="chat-stats-nav-link">
+                        Chat stats
+                    </a>
+                </li>
+            </ul>
+
+            <div class="ml-auto">
+                <div class="signin hidden">
+                    <span class="navbar-text d-inline">
+                        Hello, <span id="nav-user-name"></span> <span class="admin hidden">(admin)</span>
+                    </span>
+                    <a class="nav-link d-inline" href="/youtube_stats/session/delete" id="sign-out">
+                        Sign Out
+                    </a>
+                </div>
+                <div class="signout" id="google-signin-btn"></div>
+            </div>
+
+        </div>
+    </nav>
+
 </body>
 </html>

@@ -9,6 +9,10 @@ require_once __DIR__ . "/../models/user.php";
 
 function get_curr_user($db = null, $google = null) {
 
+    if (!isset($_SESSION["token"])) {
+        return null;
+    }
+
     if ($db === null) {
         $db = new Database();
     }

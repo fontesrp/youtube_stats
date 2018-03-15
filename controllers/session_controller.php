@@ -85,15 +85,23 @@ class SessionController {
 
     function check(): array {
 
-        if (!isset($_SESSION["token"])) {
-            return ["signed_in" => false];
+        $sess = [
+            "signed_in" => false,
+            "admin" => false,
+            "full_name" => ""
+        ];
+
+        $user = get_curr_user($this->db);
+
+        if ($user === null) {
+            return $sess;
         }
 
-        $google = new GoogleProject();
+        $sess["signed_in"] = true;
+        $sess["admin"] = $user->isAdmin();
+        $sess["full_name"] = $user->fullName();
 
-        $google->setAccessToken($_SESSION["token"]);
-
-        return ["signed_in" => $google->isTokenValid()];
+        return $sess;
     }
 
     private function set(User $user, GoogleProject $google): void {
