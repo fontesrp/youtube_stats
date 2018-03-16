@@ -45,7 +45,7 @@ The app is deployed in an AWS EC2 instance with the following configuration
 ## Running locally
 To run the project locally, make sure that you have the right versions of Apache, MySQL and PHP installed. You will also need [Composer](https://getcomposer.org) to install the Google API.
 1. Clone the repository
-2. run `composer install` in the root directory.
+2. Run `composer install` in the root directory.
 3. Make sure Apache is configured to allow the use of `.htaccess` files in this folder
 4. That's it!
 
