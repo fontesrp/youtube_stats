@@ -1,5 +1,5 @@
-# Youtube Stats
-Webapp that allows users to login with their Youtube/Google account and join a live video stream
+# YouTube Stats
+Webapp that allows users to login with their YouTube/Google account and join a live video stream
 
 [Live](http://www.rfapps.co/youtube_stats)
 
@@ -17,7 +17,7 @@ With a broadcast selected, you can view the report for the chat hype by clicking
 The Google API is abstracted by two files:
 
 * [`config/google_project.php`](./config/google_project.php) is responsible for user authentication
-* [`models/broadcast.php`](./models/broadcast.php) is responsible for communications with Youtube
+* [`models/broadcast.php`](./models/broadcast.php) is responsible for communications with YouTube
 
 As such, this files are used by most of the Controllers.
 
