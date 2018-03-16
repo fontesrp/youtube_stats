@@ -50,5 +50,5 @@ To run the project locally, make sure that you have the right versions of Apache
 4. Connect to MySQL as root and run all the `.sql` files in the [`db/migrate`](./db/migrate) folder in alphabetical order
 5. That's it!
 
-## Licence
+## License
 This project is available under the MIT License. For more information, check the [LICENSE](./LICENSE) file.
