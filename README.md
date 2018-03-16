@@ -31,8 +31,8 @@ The front-end is entirely contained in the [public](./public) directory. One of 
 For the [JavaScripts](./public/javascripts), a separation of concerns was implemented. The code is highly modular and uses many features of ES6. jQuery is used for DOM manipulation only when there are significant savings in the amount of code for a feature.
 
 Libraries:
-* jQuery UI is used for the auto-complete features.
-* Bootstrap is used for most of the styling and the construction all modals
+* jQuery UI is used to implement auto-complete.
+* Bootstrap is used for most of the styling and layout, plus the construction all modals
 * Chart.js is used for the chart in the Chat Hype Report
 
 ## Environment
