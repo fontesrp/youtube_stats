@@ -21,7 +21,7 @@ The Google API is abstracted by two files:
 
 As such, this files are used by most of the Controllers.
 
-Every request the server receives is redirected to [`routes/index.php`](./routes/index.php) and is handled by the router(./routes/routes.php). The route with the same name as the request's end-point is called and it selects the appropriate controller and method to call based on the request's properties.
+Every request the server receives is redirected to [`routes/index.php`](./routes/index.php) and is handled by the [router](./routes/routes.php). The route with the same name as the request's end-point is called and it selects the appropriate controller and method to call based on the request's properties.
 
 All interactions with the database are made through [models](./models) using the database [abstraction layer](./db/database.php).
 
@@ -44,9 +44,10 @@ The app is deployed in an AWS EC2 instance with the following configuration
 
 ## Running locally
 To run the project locally, make sure that you have the right versions of Apache, MySQL and PHP installed. You will also need [Composer](https://getcomposer.org) to install the Google API.
-1. Clone the repository and run `composer install` in the root directory.
-2. Make sure Apache is configured to allow the use of `.htaccess` files in this folder
-3. That's it!
+1. Clone the repository
+2. run `composer install` in the root directory.
+3. Make sure Apache is configured to allow the use of `.htaccess` files in this folder
+4. That's it!
 
 ## Licence
 This project is available under the MIT License. For more information, check the [LICENSE](./LICENSE) file.
