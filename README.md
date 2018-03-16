@@ -47,7 +47,7 @@ To run the project locally, make sure that you have the right versions of Apache
 1. Clone the repository
 2. Run `composer install` in the root directory.
 3. Make sure Apache is configured to allow the use of `.htaccess` files in this folder
-4. Connect to MySQL ar root and run all the files in the [`db/migrate`](./db/migrate) folder in alphabetical order
+4. Connect to MySQL as root and run all the `.sql` files in the [`db/migrate`](./db/migrate) folder in alphabetical order
 5. That's it!
 
 ## Licence
