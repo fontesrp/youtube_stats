@@ -26,12 +26,12 @@ Every request the server receives is redirected to [`routes/index.php`](./routes
 All interactions with the database are made through [models](./models) using the database [abstraction layer](./db/database.php).
 
 ### Front-end
-The front-end is entirely contained in the [public](./public) directory. One of the requirements of this project was that there should be a single [`index.html`](./public/index.html) file linking to external JavaScript and CSS files. Therefore, no sampling or separation was made and no embedded PHP was used. All the HTML code can be found in a [single file](./public/index.html).
+The front-end is entirely contained in the [public](./public) directory. All third-party libraries are included via CDN. One of the requirements of this project was that there should be a single [`index.html`](./public/index.html) file linking to external JavaScript and CSS files. Therefore, no sampling or separation was made and no embedded PHP was used. All the HTML code can be found in a [single file](./public/index.html).
 
 For the [JavaScripts](./public/javascripts), a separation of concerns was implemented. The code is highly modular and uses many features of ES6. jQuery is used for DOM manipulation only when there are significant savings in the amount of code for a feature.
 
 Libraries:
-* jQuery UI is used to implement auto-complete.
+* jQuery UI is used to implement auto-complete
 * Bootstrap is used for most of the styling and layout, plus the construction all modals
 * Chart.js is used for the chart in the Chat Hype Report
 
